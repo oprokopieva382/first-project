@@ -1,8 +1,15 @@
 import React from "react";
 import "./App.css";
+import { Header } from "./Header";
+import { Technology } from "./Technology";
 
 function App() {
-  return <div className="App">Hello, samurai! Let's go!</div>;
+  return (
+    <>
+      <Header />
+      <Technology />
+    </>
+  );
 }
 
 export default App;
