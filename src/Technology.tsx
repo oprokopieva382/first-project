@@ -1,10 +1,12 @@
 import React from "react";
 import "./App.css";
 
-export const Technology = () => {
+const Technology = () => {
+  console.log("Technology rendering");
   return (
     <>
       <div>Technology here</div>
     </>
   );
 };
+export default Technology;
