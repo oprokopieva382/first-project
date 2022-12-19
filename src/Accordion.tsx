@@ -1,15 +1,24 @@
-const Accordion = (props: any) => {
+type AccordionPropsType = {
+  titleValue: string;
+  collapsed: boolean;
+};
+const Accordion = (props: AccordionPropsType) => {
   console.log("Accordion rendering");
 
-  return (
+  return props.collapsed === true ? (
     <>
       <AccordionTitle title={props.titleValue} />
       <AccordionBody />
     </>
+  ) : (
+    <AccordionTitle title={props.titleValue} />
   );
 };
 
-function AccordionTitle(props: any) {
+type AccordionTitlePropsType = {
+  title: string;
+};
+function AccordionTitle(props: AccordionTitlePropsType) {
   console.log("AccordionTitle rendering");
   return (
     <div>
@@ -18,7 +27,7 @@ function AccordionTitle(props: any) {
   );
 }
 
-function AccordionBody(props: any) {
+function AccordionBody() {
   console.log("AccordionBody rendering");
   return (
     <div>
