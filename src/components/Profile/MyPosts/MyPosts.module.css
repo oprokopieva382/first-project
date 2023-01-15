@@ -1,3 +1,7 @@
 .posts {
   color: rgb(46, 46, 46);
+  margin-top: 10px;
+}
+.postBlock {
+  padding: 10px;
 }
