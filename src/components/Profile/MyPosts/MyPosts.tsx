@@ -22,6 +22,9 @@ const MyPosts = (props: MyPostsType) => {
     },
   ];
 
+  let posts = postDate.map((p) => (
+    <Posts message={p.message} likesCount={p.likesCount} id={p.id} />
+  ));
   return (
     <div>
       <div className={s.postBlock}>My posts</div>
@@ -34,16 +37,7 @@ const MyPosts = (props: MyPostsType) => {
       </div>
 
       <div className={s.posts}>New Post</div>
-      <Posts
-        message={postDate[0].message}
-        likesCount={postDate[0].likesCount}
-        id={postDate[0].id}
-      />
-      <Posts
-        message={postDate[1].message}
-        likesCount={postDate[1].likesCount}
-        id={postDate[1].id}
-      />
+      {posts}
     </div>
   );
 };
