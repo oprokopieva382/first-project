@@ -1,14 +1,11 @@
 import React from "react";
+import { MyPostsType } from "../MyPosts";
 import s from "./Posts.module.css";
 
-type PostsPropsType = {
-  message: string;
-  likesCount: number;
-};
 
-const Posts = (props: PostsPropsType) => {
+const Posts = (props: MyPostsType) => {
   return (
-    <>
+    <div>
       <div className={s.item}>
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Artist%27s_impression_of_the_Milky_Way_%28updated_-_annotated%29.jpg/290px-Artist%27s_impression_of_the_Milky_Way_%28updated_-_annotated%29.jpg"
@@ -19,7 +16,7 @@ const Posts = (props: PostsPropsType) => {
           <span>{props.likesCount} Likes</span>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

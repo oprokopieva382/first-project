@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import { BrowserRouter, Route } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">

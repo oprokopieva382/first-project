@@ -7,7 +7,7 @@ const Profile = () => {
     <>
       <div>
         <ProfileInfo />
-        <MyPosts />
+        <MyPosts message={""} id={0} likesCount={0} />
       </div>
     </>
   );
