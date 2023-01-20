@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { DialogsDataType } from "../Dialogs";
+import { DialogsDataType } from "../../../redux/state";
+
 import s from "./../Dialogs.module.css";
 
 

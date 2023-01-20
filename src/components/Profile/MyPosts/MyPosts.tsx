@@ -1,28 +1,13 @@
-import React from "react";
+import { MyPostsType } from "../../../redux/state";
 import s from "./MyPosts.module.css";
 import Posts from "./Post/Posts";
 
-export type MyPostsType = {
-  message: string;
-  id: number;
-  likesCount: number;
+type MyPostsComponentType = {
+  postDate: MyPostsType[];
 };
 
-const MyPosts = (props: MyPostsType) => {
-  let postDate = [
-    {
-      message: "Hi Darna, how are you?",
-      id: 1,
-      likesCount: 12,
-    },
-    {
-      message: "Whats up Alpha, I am good. You?",
-      id: 2,
-      likesCount: 10,
-    },
-  ];
-
-  let posts = postDate.map((p) => (
+const MyPosts = (props: MyPostsComponentType) => {
+  let posts = props.postDate.map((p) => (
     <Posts message={p.message} likesCount={p.likesCount} id={p.id} />
   ));
   return (

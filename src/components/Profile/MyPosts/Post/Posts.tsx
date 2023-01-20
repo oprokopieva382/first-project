@@ -1,5 +1,5 @@
-import React from "react";
-import { MyPostsType } from "../MyPosts";
+
+import { MyPostsType } from "../../../../redux/state";
 import s from "./Posts.module.css";
 
 

@@ -1,20 +1,38 @@
-import React from "react";
 import "./App.css";
 import { Dialogs } from "./components/Dialogs/Dialogs";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import { BrowserRouter, Route } from "react-router-dom";
+import  { RootStateType } from "./redux/state"
 
-const App = () => {
+type AppType = {
+  state: RootStateType;
+};
+
+const App = ({state}: AppType) => {
+ 
   return (
     <BrowserRouter>
       <div className="app-wrapper">
         <Header />
         <Navbar />
         <div className="app-wrapper-content">
-          <Route exact path="/dialogs" component={Dialogs}></Route>
-          <Route exact path="/profile" component={Profile}></Route>
+          <Route
+            exact
+            path="/dialogs"
+            render={() => (
+              <Dialogs
+                messagesData={state.dialogsPage.messagesData}
+                dialogsData={state.dialogsPage.dialogsData}
+              />
+            )}
+          ></Route>
+          <Route
+            exact
+            path="/profile"
+            render={() => <Profile postDate={state.profilePage.postDate}/>}
+          ></Route>
         </div>
       </div>
     </BrowserRouter>

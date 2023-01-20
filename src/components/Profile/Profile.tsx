@@ -1,13 +1,17 @@
-import React from "react";
+import { MyPostsType } from "../../redux/state";
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import s from "./Profile.module.css";
-const Profile = () => {
+
+type ProfileType = {
+  postDate: MyPostsType[]
+}
+
+const Profile = (props: ProfileType) => {
   return (
     <>
       <div>
         <ProfileInfo />
-        <MyPosts message={""} id={0} likesCount={0} />
+        <MyPosts postDate={props.postDate} />
       </div>
     </>
   );
