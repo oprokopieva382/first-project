@@ -1,3 +1,36 @@
+import { rerenderEntireTree } from "../render";
+
+export type MyPostsType = {
+  message: string;
+  id: number;
+  likesCount: number;
+};
+
+export type DialogsDataType = {
+  name: string;
+  id: number;
+};
+export type MessagesDataType = {
+  message: string;
+  id: number;
+};
+
+export type ProfilePageType = {
+  postDate: MyPostsType[];
+};
+export type DialogPageType = {
+  dialogsData: DialogsDataType[];
+  messagesData: MessagesDataType[];
+};
+export type SidebarType = {};
+
+export type RootStateType = {
+  profilePage: ProfilePageType;
+  dialogsPage: DialogPageType;
+  sidebar: SidebarType;
+};
+
+
 let state: RootStateType = {
   profilePage: {
     postDate: [
@@ -26,38 +59,19 @@ let state: RootStateType = {
       { message: "There is rain of comets on the way to Pandora?", id: 2 },
       { message: "Thanks for let me know", id: 3 },
     ],
-   
   },
   sidebar: {},
 };
 
-export type MyPostsType = {
-  message: string
-  id: number
-  likesCount: number
+export let addPost = (postText: string) => {
+let newPost: MyPostsType = {
+  message: postText,
+  id: 3,
+  likesCount: 8,
 };
 
-export type DialogsDataType = {
-  name: string
-  id: number
-};
-export type MessagesDataType = {
-  message: string
-  id: number
-};
+state.profilePage.postDate.push(newPost)
+rerenderEntireTree(state);
+}
 
-export type ProfilePageType = {
-  postDate: MyPostsType[]
-};
-export type DialogPageType = {
-  dialogsData: DialogsDataType[]
-  messagesData: MessagesDataType[]
-};
-export type SidebarType = {}
-
-export type RootStateType = {
-  profilePage: ProfilePageType
-  dialogsPage: DialogPageType
-  sidebar: SidebarType
-};
 export default state;

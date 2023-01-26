@@ -4,10 +4,11 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import { BrowserRouter, Route } from "react-router-dom";
-import  { RootStateType } from "./redux/state"
+import  { addPost, RootStateType } from "./redux/state"
 
 type AppType = {
   state: RootStateType;
+  addPost: (postText: string) => void;
 };
 
 const App = ({state}: AppType) => {
@@ -31,7 +32,7 @@ const App = ({state}: AppType) => {
           <Route
             exact
             path="/profile"
-            render={() => <Profile postDate={state.profilePage.postDate}/>}
+            render={() => <Profile postDate={state.profilePage.postDate} addPost = {addPost}/>}
           ></Route>
         </div>
       </div>

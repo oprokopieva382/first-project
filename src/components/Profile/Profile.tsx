@@ -3,17 +3,18 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 type ProfileType = {
-  postDate: MyPostsType[]
-}
+  postDate: MyPostsType[];
+  addPost: (postText: string) => void;
+};
 
 const Profile = (props: ProfileType) => {
   return (
-    <>
+    <div>
       <div>
         <ProfileInfo />
-        <MyPosts postDate={props.postDate} />
+        <MyPosts postDate={props.postDate} addPost={props.addPost}/>
       </div>
-    </>
+    </div>
   );
 };
 
