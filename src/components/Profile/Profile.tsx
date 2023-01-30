@@ -3,8 +3,10 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 type ProfileType = {
-  postDate: MyPostsType[];
+  profilePage: MyPostsType[];
   addPost: (postText: string) => void;
+  updateNewPostText: (newText: string) => void;
+  newPostText: string;
 };
 
 const Profile = (props: ProfileType) => {
@@ -12,7 +14,12 @@ const Profile = (props: ProfileType) => {
     <div>
       <div>
         <ProfileInfo />
-        <MyPosts postDate={props.postDate} addPost={props.addPost}/>
+        <MyPosts
+          profilePage={props.profilePage}
+          newPostText={props.newPostText}
+          addPost={props.addPost}
+          updateNewPostText={props.updateNewPostText}
+        />
       </div>
     </div>
   );

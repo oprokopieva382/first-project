@@ -4,16 +4,17 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import { BrowserRouter, Route } from "react-router-dom";
-import  { addPost, RootStateType } from "./redux/state"
+import { addPost, updateNewPostText, RootStateType } from "./redux/state";
 
 type AppType = {
   state: RootStateType;
   addPost: (postText: string) => void;
+  updateNewPostText: (newText: string) => void
 };
 
 const App = ({state}: AppType) => {
  
-  return (
+   return (
     <BrowserRouter>
       <div className="app-wrapper">
         <Header />
@@ -32,7 +33,14 @@ const App = ({state}: AppType) => {
           <Route
             exact
             path="/profile"
-            render={() => <Profile postDate={state.profilePage.postDate} addPost = {addPost}/>}
+            render={() => (
+              <Profile
+                profilePage={state.profilePage.postDate}
+                newPostText={state.profilePage.newPostText}
+                addPost={addPost}
+                updateNewPostText={updateNewPostText}
+              />
+            )}
           ></Route>
         </div>
       </div>
