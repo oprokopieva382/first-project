@@ -1,3 +1,7 @@
+// let rerenderEntireTree = () => {
+//   console.log("state changed");
+// };
+
 import { rerenderEntireTree } from "../render";
 
 export type MyPostsType = {
@@ -64,10 +68,10 @@ let state: RootStateType = {
   sidebar: {},
 };
 export const updateNewPostText = (newText: string) => {
-  state.profilePage.newPostText = newText;
+   state.profilePage.newPostText = newText;
   rerenderEntireTree(state);
 };
-export let addPost = (postText: string) => {
+export const addPost = (postText: string) => {
   let newPost: MyPostsType = {
     message: postText,
     id: new Date().getTime(),
@@ -76,5 +80,9 @@ export let addPost = (postText: string) => {
   state.profilePage.postDate.push(newPost);
   rerenderEntireTree(state);
 };
+
+// export const subscriber = (observer: any) => {
+// rerenderEntireTree = observer;
+// };
 
 export default state;

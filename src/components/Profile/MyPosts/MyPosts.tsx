@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 import { MyPostsType } from "../../../redux/state";
 import s from "./MyPosts.module.css";
 import Posts from "./Post/Posts";
@@ -13,9 +13,10 @@ type MyPostsComponentType = {
 const MyPosts = (props: MyPostsComponentType) => {
   const addPost = () => {
     props.addPost(props.newPostText);
-     };
+  };
 
   const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    console.log("hi");
     props.updateNewPostText(e.currentTarget.value);
   };
 

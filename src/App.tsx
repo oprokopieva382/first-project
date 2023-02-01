@@ -13,7 +13,7 @@ type AppType = {
 };
 
 const App = ({state}: AppType) => {
- 
+ console.log(11)
    return (
     <BrowserRouter>
       <div className="app-wrapper">
