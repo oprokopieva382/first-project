@@ -1,8 +1,13 @@
 import "./index.css";
-import state from "./redux/state";
-import { rerenderEntireTree } from "./render";
+import ReactDOM from "react-dom";
+import store  from "./redux/state";
+import App from "./App";
 
 
 
-rerenderEntireTree(state);
-// subscriber(rerenderEntireTree());
+export const rerenderEntireTree = () => {
+  ReactDOM.render(<App store={store} />, document.getElementById("root"));
+};
+
+store.subscribe(rerenderEntireTree);
+rerenderEntireTree();

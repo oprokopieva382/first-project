@@ -4,17 +4,15 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import { BrowserRouter, Route } from "react-router-dom";
-import { addPost, updateNewPostText, RootStateType } from "./redux/state";
+import { StoreType } from "./redux/state";
 
-type AppType = {
-  state: RootStateType;
-  addPost: (postText: string) => void;
-  updateNewPostText: (newText: string) => void
+type AppPropsType = {
+  store: StoreType;
 };
 
-const App = ({state}: AppType) => {
- console.log(11)
-   return (
+const App: React.FC<AppPropsType> = (props) => {
+  //const state = props.store.getState();
+  return (
     <BrowserRouter>
       <div className="app-wrapper">
         <Header />
@@ -25,8 +23,10 @@ const App = ({state}: AppType) => {
             path="/dialogs"
             render={() => (
               <Dialogs
-                messagesData={state.dialogsPage.messagesData}
-                dialogsData={state.dialogsPage.dialogsData}
+                messagesData={props.store._state.dialogsPage.messagesData}
+                dialogsData={props.store._state.dialogsPage.dialogsData}
+                dispatch={props.store.dispatch.bind(props.store)}
+                newMessageBody={props.store._state.dialogsPage.newMessageBody}
               />
             )}
           ></Route>
@@ -35,10 +35,9 @@ const App = ({state}: AppType) => {
             path="/profile"
             render={() => (
               <Profile
-                profilePage={state.profilePage.postDate}
-                newPostText={state.profilePage.newPostText}
-                addPost={addPost}
-                updateNewPostText={updateNewPostText}
+                profilePage={props.store._state.profilePage.postDate}
+                newPostText={props.store._state.profilePage.newPostText}
+                dispatch={props.store.dispatch.bind(props.store)}
               />
             )}
           ></Route>
@@ -46,6 +45,6 @@ const App = ({state}: AppType) => {
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

@@ -1,12 +1,11 @@
-import { MyPostsType } from "../../redux/state";
+import { ActionsType, MyPostsType } from "../../redux/state";
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 type ProfileType = {
   profilePage: MyPostsType[];
-  addPost: (postText: string) => void;
-  updateNewPostText: (newText: string) => void;
   newPostText: string;
+  dispatch: (action: ActionsType) => void;
 };
 
 const Profile = (props: ProfileType) => {
@@ -17,8 +16,7 @@ const Profile = (props: ProfileType) => {
         <MyPosts
           profilePage={props.profilePage}
           newPostText={props.newPostText}
-          addPost={props.addPost}
-          updateNewPostText={props.updateNewPostText}
+          dispatch={props.dispatch}
         />
       </div>
     </div>

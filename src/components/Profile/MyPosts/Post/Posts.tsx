@@ -1,7 +1,5 @@
-
 import { MyPostsType } from "../../../../redux/state";
 import s from "./Posts.module.css";
-
 
 const Posts = (props: MyPostsType) => {
   return (
