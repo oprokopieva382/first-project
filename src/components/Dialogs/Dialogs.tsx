@@ -30,8 +30,12 @@ export const Dialogs = (props: DialogsType) => {
   };
   const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let body = e.currentTarget.value;
+
     props.dispatch(updateNewMessageBodyAC(body));
   };
+
+
+
   return (
     <>
       <div className={s.dialogs}>

@@ -48,62 +48,62 @@ export type ActionsType =
   | ReturnType<typeof updateNewMessageBodyAC>
   | ReturnType<typeof sendMessageAC>;
 
-const store: StoreType = {
-  _state: {
-    profilePage: {
-      postDate: [
-        {
-          message: "Hi Darna, how are you?",
-          id: 1,
-          likesCount: 12,
-        },
-        {
-          message: "Whats up Alpha, I am good. You?",
-          id: 2,
-          likesCount: 10,
-        },
-      ],
-      newPostText: "",
-    },
-    dialogsPage: {
-      dialogsData: [
-        { name: "Darna", id: 1 },
-        { name: "Alpha", id: 2 },
-        { name: "Zeratul", id: 3 },
-        { name: "Kirby", id: 4 },
-        { name: "Kreng", id: 5 },
-      ],
-      messagesData: [
-        { message: "Hey Alpha.", id: 1 },
-        {
-          message: "Hey. There is rain of comets on the way to Pandora?",
-          id: 2,
-        },
-        { message: "Thanks for let me know.", id: 3 },
-      ],
-      newMessageBody: "",
-    },
-    sidebar: {},
-  },
-  _rerender() {
-    console.log("state changed");
-  },
-  subscribe(observer: () => void) {
-    this._rerender = observer;
-  },
-  getState() {
-    return this._state;
-  },
-  dispatch(action) {
+// const store: StoreType = {
+//   _state: {
+//     profilePage: {
+//       postDate: [
+//         {
+//           message: "Hi Darna, how are you?",
+//           id: 1,
+//           likesCount: 12,
+//         },
+//         {
+//           message: "Whats up Alpha, I am good. You?",
+//           id: 2,
+//           likesCount: 10,
+//         },
+//       ],
+//       newPostText: "",
+//     },
+//     dialogsPage: {
+//       dialogsData: [
+//         { name: "Darna", id: 1 },
+//         { name: "Alpha", id: 2 },
+//         { name: "Zeratul", id: 3 },
+//         { name: "Kirby", id: 4 },
+//         { name: "Kreng", id: 5 },
+//       ],
+//       messagesData: [
+//         { message: "Hey Alpha.", id: 1 },
+//         {
+//           message: "Hey. There is rain of comets on the way to Pandora?",
+//           id: 2,
+//         },
+//         { message: "Thanks for let me know.", id: 3 },
+//       ],
+//       newMessageBody: "",
+//     },
+//     sidebar: {},
+//   },
+//   _rerender() {
+//     console.log("state changed");
+//   },
+//   subscribe(observer: () => void) {
+//     this._rerender = observer;
+//   },
+//   getState() {
+//     return this._state;
+//   },
+//   dispatch(action) {
 
-this._state = profilePageReducer(this._state, action);
-this._state = dialogsPageReducer(this._state, action);
-this._state = sidebarReducer(this._state, action);
+// profilePageReducer(this._state, action);
+// dialogsPageReducer(this._state, action);
+// sidebarReducer(this._state, action);
 
   
-      this._rerender();
-    }
-  }
+//       this._rerender();
+//     }
+//   }
 
 
-export default store;
+//export default store;

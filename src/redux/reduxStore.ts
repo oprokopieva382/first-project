@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
 });
 
 export let store = legacy_createStore(rootReducer);
-
+export type StoreType = typeof store
 export type RootStateType = ReturnType<typeof rootReducer>;
 
 // а это, чтобы можно было в консоли браузера обращаться к store в любой момент

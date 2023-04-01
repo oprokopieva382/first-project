@@ -1,18 +1,42 @@
-import { ActionsType, RootStateType } from "./state";
+import { DialogPageType } from "./state";
+
+export type ActionsType =
+  | ReturnType<typeof updateNewMessageBodyAC>
+  | ReturnType<typeof sendMessageAC>;
+
+type InitialStateType = DialogPageType;
+let initialState: InitialStateType = {
+  dialogsData: [
+    { name: "Darna", id: 1 },
+    { name: "Alpha", id: 2 },
+    { name: "Zeratul", id: 3 },
+    { name: "Kirby", id: 4 },
+    { name: "Kreng", id: 5 },
+  ],
+  messagesData: [
+    { message: "Hey Alpha.", id: 1 },
+    {
+      message: "Hey. There is rain of comets on the way to Pandora?",
+      id: 2,
+    },
+    { message: "Thanks for let me know.", id: 3 },
+  ],
+  newMessageBody: "",
+};
 
 export const dialogsPageReducer = (
-  state: RootStateType,
+  state: InitialStateType = initialState,
   action: ActionsType
-): RootStateType => {
+): InitialStateType => {
   switch (action.type) {
     case "UPDATE-NEW-MESSAGE-BODY":
-      state.dialogsPage.newMessageBody = action.body;
+      state.newMessageBody = action.body;
       return state;
 
     case "SEND_MESSAGE":
-      let body = state.dialogsPage.newMessageBody;
-      state.dialogsPage.newMessageBody = "";
-      state.dialogsPage.messagesData.push({ id: 4, message: body });
+      let body = state.newMessageBody;
+      state.newMessageBody = "";
+      state.messagesData.push({ id: 4, message: body });
       return state;
     default:
       return state;

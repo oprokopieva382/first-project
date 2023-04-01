@@ -4,6 +4,7 @@ import {
   updateNewPostTextAC,
 } from "../../../redux/profilePageReducer";
 import { ActionsType, MyPostsType } from "../../../redux/state";
+import MyPosts from "./MyPosts";
 import s from "./MyPosts.module.css";
 import Posts from "./Post/Posts";
 
@@ -13,7 +14,7 @@ type MyPostsComponentType = {
   newPostText: string;
 };
 
-const MyPosts = (props: MyPostsComponentType) => {
+const MyPostsContainer = (props: MyPostsComponentType) => {
   const addPost = () => {
     props.dispatch(addPostAC(props.newPostText));
     //props.addPost(props.newPostText);
@@ -33,21 +34,8 @@ const MyPosts = (props: MyPostsComponentType) => {
   console.log(props.newPostText);
 
   return (
-    <>
-      <div>
-        <div className={s.postBlock}>My posts</div>
-        <h3>My posts</h3>
-        <div>
-          <textarea value={props.newPostText} onChange={onPostChange} />
-        </div>
-        <div>
-          <button onClick={addPost}>Add post</button>
-        </div>
-        <div className={s.posts}>New Post</div>
-        {posts}
-      </div>
-    </>
+   <MyPosts/>
   );
 };
 
-export default MyPosts;
+export default MyPostsContainer;
