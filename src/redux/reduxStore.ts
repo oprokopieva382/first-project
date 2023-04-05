@@ -1,3 +1,4 @@
+import { usersPageReducer } from './usersPageReducer';
 import { combineReducers, legacy_createStore } from "redux";
 import { dialogsPageReducer } from "./dialogsPageReducer";
 import { profilePageReducer } from "./profilePageReducer";
@@ -7,6 +8,7 @@ const rootReducer = combineReducers({
   profilePage: profilePageReducer,
   dialogsPage: dialogsPageReducer,
   sidebar: sidebarReducer,
+  usersPage: usersPageReducer
 });
 
 export let store = legacy_createStore(rootReducer);

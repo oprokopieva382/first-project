@@ -1,41 +1,29 @@
-import { ChangeEvent } from "react";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
 import {
   addPostAC,
   updateNewPostTextAC,
 } from "../../../redux/profilePageReducer";
-import { ActionsType, MyPostsType } from "../../../redux/state";
+import { RootStateType} from "../../../redux/reduxStore";
 import MyPosts from "./MyPosts";
-import s from "./MyPosts.module.css";
-import Posts from "./Post/Posts";
 
-type MyPostsComponentType = {
-  profilePage: MyPostsType[];
-  dispatch: (action: ActionsType) => void;
-  newPostText: string;
+
+let mapStateToProps = (state: RootStateType) => {
+  return {
+    newPostText: state.profilePage.newPostText,
+    profilePage: state.profilePage.postDate
+  };
 };
 
-const MyPostsContainer = (props: MyPostsComponentType) => {
-  const addPost = () => {
-    props.dispatch(addPostAC(props.newPostText));
-    //props.addPost(props.newPostText);
+let mapDispatchToProps = (dispatch: Dispatch) => {
+  return {
+    addPost: () => {
+      dispatch(addPostAC());
+    },
+    updateNewPostText: (newText: string) => {
+      dispatch(updateNewPostTextAC(newText));
+    },
   };
-
-  const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    let newText = e.currentTarget.value;
-
-    console.log(e.currentTarget.value);
-    props.dispatch(updateNewPostTextAC(newText));
-  };
-
-  let posts = props.profilePage.map((p) => (
-    <Posts key={p.id} message={p.message} likesCount={p.likesCount} id={p.id} />
-  ));
-
-  console.log(props.newPostText);
-
-  return (
-   <MyPosts/>
-  );
 };
 
-export default MyPostsContainer;
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
