@@ -7,7 +7,7 @@ import {
   unfollowAC,
   UsersType,
 } from "../../redux/usersPageReducer";
-import { Users } from "./Users";
+import { UsersC } from "./UsersC";
 
 let mapStateToProps = (state: RootStateType) => {
   return {
@@ -17,10 +17,10 @@ let mapStateToProps = (state: RootStateType) => {
 
 let mapDispatchToProps = (dispatch: Dispatch) => {
   return {
-    follow: (usersId: string) => {
+    follow: (usersId: number) => {
       dispatch(followAC(usersId));
     },
-    unfollow: (usersId: string) => {
+    unfollow: (usersId: number) => {
       console.log("dispatch unfollow");
       dispatch(unfollowAC(usersId));
     },
@@ -33,4 +33,4 @@ let mapDispatchToProps = (dispatch: Dispatch) => {
 export const UsersContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Users);
+)(UsersC);

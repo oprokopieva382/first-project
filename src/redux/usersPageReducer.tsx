@@ -1,22 +1,20 @@
-import { v1 } from "uuid";
-
 export type ActionsType =
   | ReturnType<typeof followAC>
   | ReturnType<typeof unfollowAC>
   | ReturnType<typeof setUsersAC>;
 
-export type LocationType = {
-  city: string;
-  country: string;
+export type PhotosType = {
+  small: string;
+  large: string;
 };
 
 export type UsersType = {
-  id: string;
-  photoUrl: string;
+  id: number;
+  uniqueUrlName: string;
   followed: boolean;
-  fullName: string;
+  name: string;
   status: string;
-  location: LocationType;
+  photos: PhotosType;
 };
 
 export type Users = {
@@ -25,27 +23,8 @@ export type Users = {
 export type InitialStateType = Users;
 
 let initialState: InitialStateType = {
-  users: [
-    {
-      id: v1(),
-      photoUrl:
-        "https://static.wikia.nocookie.net/future-fight/images/5/55/Nova%28RR%29.jpg",
-      followed: false,
-      fullName: "Nova",
-      status: "Andromeda Galaxy open door",
-      location: { city: "Nebula", country: "Messier" },
-    },
-    {
-      id: v1(),
-      photoUrl:
-        "https://static.wikia.nocookie.net/ultimate-marvel-cinematic-universe/images/6/64/Super_Skrull_Raf_Art.jpg",
-      followed: true,
-      fullName: "krull",
-      status: "Cygnus A open door",
-      location: { city: "Pegasus", country: "Northern Cross" },
-    },
-  ],
-};
+  users: []
+ };
 
 export const usersPageReducer = (
   state: InitialStateType = initialState,
@@ -77,13 +56,13 @@ export const usersPageReducer = (
   }
 };
 
-export const followAC = (usersId: string) => {
+export const followAC = (usersId: number) => {
   return {
     type: "FOLLOW",
     usersId: usersId,
   } as const;
 };
-export const unfollowAC = (usersId: string) => {
+export const unfollowAC = (usersId: number) => {
   console.log("reduser unfollow");
   return {
     type: "UNFOLLOW",
