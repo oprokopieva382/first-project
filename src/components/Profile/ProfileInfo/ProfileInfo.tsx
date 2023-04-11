@@ -1,5 +1,15 @@
+import { ProfileUserPageType } from "../../../redux/state";
+import { Preloader } from "../../Preloader/Preloader";
 import s from "./ProfileInfo.module.css";
-const ProfileInfo = () => {
+
+type ProfileInfoPropsType = {
+  profile: ProfileUserPageType | null;
+};
+
+const ProfileInfo = (props: ProfileInfoPropsType) => {
+  if (!props.profile) {
+    return <Preloader/>
+  }
   return (
     <>
       <div>
@@ -10,6 +20,7 @@ const ProfileInfo = () => {
             width={700}
           />
         </div>
+        <img src={props.profile.photos.large}/>
         <div className={s.discriptionBlock}>ava</div>
       </div>
     </>

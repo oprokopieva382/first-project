@@ -1,10 +1,10 @@
 export type ActionsType =
-  | ReturnType<typeof followAC>
-  | ReturnType<typeof unfollowAC>
-  | ReturnType<typeof setUsersAC>
-  | ReturnType<typeof setCurrentPageAC>
-  | ReturnType<typeof setTotalUsersCountAC>
-  | ReturnType<typeof setLoadingAC>;
+  | ReturnType<typeof follow>
+  | ReturnType<typeof unfollow>
+  | ReturnType<typeof setUsers>
+  | ReturnType<typeof setCurrentPage>
+  | ReturnType<typeof setTotalUsersCount>
+  | ReturnType<typeof setLoading>;
 
 export type PhotosType = {
   small: string;
@@ -82,38 +82,37 @@ export const usersPageReducer = (
   }
 };
 
-export const followAC = (usersId: number) => {
+export const follow = (usersId: number) => {
   return {
     type: "FOLLOW",
     usersId: usersId,
   } as const;
 };
-export const unfollowAC = (usersId: number) => {
-  console.log("reduser unfollow");
-  return {
+export const unfollow = (usersId: number) => {
+   return {
     type: "UNFOLLOW",
     usersId: usersId,
   } as const;
 };
-export const setUsersAC = (users: UsersType[]) => {
+export const setUsers = (users: UsersType[]) => {
   return {
     type: "SET-USERS",
     users: users,
   } as const;
 };
-export const setCurrentPageAC = (currentPage: number) => {
+export const setCurrentPage = (currentPage: number) => {
   return {
     type: "SET-CURRENT-PAGE",
     currentPage,
   } as const;
 };
-export const setTotalUsersCountAC = (totalCount: number) => {
+export const setTotalUsersCount = (totalCount: number) => {
   return {
     type: "SET-TOTAL-USERS-COUNT",
     totalCount,
   } as const;
 };
-export const setLoadingAC = (loading: boolean) => {
+export const setLoading = (loading: boolean) => {
   return {
     type: "IS-LOADING",
     loading,

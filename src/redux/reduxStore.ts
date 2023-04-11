@@ -3,12 +3,14 @@ import { combineReducers, legacy_createStore } from "redux";
 import { dialogsPageReducer } from "./dialogsPageReducer";
 import { profilePageReducer } from "./profilePageReducer";
 import { sidebarReducer } from "./sidebarReducer";
+import { authReducer } from './authReducer';
 
 const rootReducer = combineReducers({
   profilePage: profilePageReducer,
   dialogsPage: dialogsPageReducer,
   sidebar: sidebarReducer,
-  usersPage: usersPageReducer
+  usersPage: usersPageReducer,
+  auth: authReducer,
 });
 
 export let store = legacy_createStore(rootReducer);

@@ -1,8 +1,9 @@
-import { MyPostsType, ProfilePageType } from "./state";
+import { MyPostsType, ProfilePageType, ProfileUserPageType } from "./state";
 
 export type ActionsType =
   | ReturnType<typeof addPostAC>
-  | ReturnType<typeof updateNewPostTextAC>;
+  | ReturnType<typeof updateNewPostTextAC>
+  | ReturnType<typeof setUserProfile>;
 
 type InitialStateType = ProfilePageType;
 let initialState: InitialStateType = {
@@ -19,6 +20,7 @@ let initialState: InitialStateType = {
     },
   ],
   newPostText: "",
+  profile: null,
 };
 
 export const profilePageReducer = (
@@ -36,6 +38,8 @@ export const profilePageReducer = (
       return { ...state, postDate: [newPost, ...state.postDate] };
     case "UPDATE-NEW-POST-TEXT":
       return { ...state, newPostText: action.newText };
+    case "SET-USER-PROFILE":
+      return { ...state, profile: action.profile };
     default:
       return state;
   }
@@ -50,5 +54,11 @@ export const updateNewPostTextAC = (newText: string) => {
   return {
     type: "UPDATE-NEW-POST-TEXT",
     newText: newText,
+  } as const;
+};
+export const setUserProfile = (profile: ProfileUserPageType) => {
+  return {
+    type: "SET-USER-PROFILE",
+    profile,
   } as const;
 };

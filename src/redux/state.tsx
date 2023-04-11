@@ -1,6 +1,12 @@
-import { dialogsPageReducer, sendMessageAC, updateNewMessageBodyAC } from "./dialogsPageReducer";
-import { addPostAC, profilePageReducer, updateNewPostTextAC } from "./profilePageReducer";
-import { sidebarReducer } from "./sidebarReducer";
+import {
+  sendMessageAC,
+  updateNewMessageBodyAC,
+} from "./dialogsPageReducer";
+import {
+  addPostAC,
+  updateNewPostTextAC,
+} from "./profilePageReducer";
+
 
 export type MyPostsType = {
   message: string;
@@ -16,10 +22,35 @@ export type MessagesDataType = {
   message: string;
   id: number;
 };
+export type UserContacts = {
+  facebook: string;
+  website: string;
+  vk: string;
+  twitter: string;
+  instagram: string;
+  youtube: string;
+  github: string;
+  mainLink: string;
+};
+export type UserPhotos = {
+  small: string;
+  large: string;
+};
+
+export type ProfileUserPageType = {
+  aboutMe: string;
+  contacts: UserContacts;
+  lookingForAJob: boolean;
+  lookingForAJobDescription: string;
+  fullName: string;
+  userId: number;
+  photos: UserPhotos;
+};
 
 export type ProfilePageType = {
   postDate: MyPostsType[];
   newPostText: string;
+  profile: ProfileUserPageType | null;
 };
 export type DialogPageType = {
   dialogsData: DialogsDataType[];
@@ -28,19 +59,19 @@ export type DialogPageType = {
 };
 export type SidebarType = {};
 
-export type RootStateType = {
-  profilePage: ProfilePageType;
-  dialogsPage: DialogPageType;
-  sidebar: SidebarType;
-};
+// export type RootStateType = {
+//   profilePage: ProfilePageType;
+//   dialogsPage: DialogPageType;
+//   sidebar: SidebarType;
+// };
 
-export type StoreType = {
-  _state: RootStateType;
-  _rerender: () => void;
-  subscribe: (observer: () => void) => void;
-  getState: () => void;
-  dispatch: (action: ActionsType) => void;
-};
+// export type StoreType = {
+//   _state: RootStateType;
+//   _rerender: () => void;
+//   subscribe: (observer: () => void) => void;
+//   getState: () => void;
+//   dispatch: (action: ActionsType) => void;
+// };
 
 export type ActionsType =
   | ReturnType<typeof addPostAC>
@@ -100,10 +131,8 @@ export type ActionsType =
 // dialogsPageReducer(this._state, action);
 // sidebarReducer(this._state, action);
 
-  
 //       this._rerender();
 //     }
 //   }
-
 
 //export default store;

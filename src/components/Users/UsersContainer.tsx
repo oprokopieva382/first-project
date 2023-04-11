@@ -1,13 +1,12 @@
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
 import { RootStateType } from "../../redux/reduxStore";
 import {
-  followAC,
-  setCurrentPageAC,
-  setLoadingAC,
-  setTotalUsersCountAC,
-  setUsersAC,
-  unfollowAC,
+  follow,
+  setCurrentPage,
+  setLoading,
+  setTotalUsersCount,
+  setUsers,
+  unfollow,
   UsersType,
 } from "../../redux/usersPageReducer";
 import React from "react";
@@ -80,30 +79,34 @@ let mapStateToProps = (state: RootStateType) => {
   };
 };
 
-let mapDispatchToProps = (dispatch: Dispatch) => {
-  return {
-    follow: (usersId: number) => {
-      dispatch(followAC(usersId));
-    },
-    unfollow: (usersId: number) => {
-      dispatch(unfollowAC(usersId));
-    },
-    setUsers: (users: UsersType[]) => {
-      dispatch(setUsersAC(users));
-    },
-    setCurrentPage: (currentPage: number) => {
-      dispatch(setCurrentPageAC(currentPage));
-    },
-    setTotalUsersCount: (totalCount: number) => {
-      dispatch(setTotalUsersCountAC(totalCount));
-    },
-    setLoading: (loading: boolean) => {
-      dispatch(setLoadingAC(loading));
-    },
-  };
-};
+// let mapDispatchToProps = (dispatch: Dispatch) => {
+//   return {
+//     follow: (usersId: number) => {
+//       dispatch(followAC(usersId));
+//     },
+//     unfollow: (usersId: number) => {
+//       dispatch(unfollowAC(usersId));
+//     },
+//     setUsers: (users: UsersType[]) => {
+//       dispatch(setUsersAC(users));
+//     },
+//     setCurrentPage: (currentPage: number) => {
+//       dispatch(setCurrentPageAC(currentPage));
+//     },
+//     setTotalUsersCount: (totalCount: number) => {
+//       dispatch(setTotalUsersCountAC(totalCount));
+//     },
+//     setLoading: (loading: boolean) => {
+//       dispatch(setLoadingAC(loading));
+//     },
+//   };
+// };
 
-export const UsersContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UsersClass);
+export const UsersContainer = connect(mapStateToProps, {
+  follow,
+  unfollow,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  setLoading,
+})(UsersClass);

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import Nova from "../../pictures/nova.jpg";
 import { UsersType } from "../../redux/usersPageReducer";
 import { Preloader } from "../Preloader/Preloader";
@@ -22,14 +23,14 @@ export const UsersFuncComponent = (props: UsersFuncComponentPropsType) => {
   }
   return (
     <div>
-      {props.isFetching === true ? <Preloader/> : null}
+      {props.isFetching === true ? <Preloader /> : null}
       <span>
         {pages.map((p) => {
           return (
-            <span 
+            <span
               onClick={() => {
                 props.onPageChange(p);
-              }} 
+              }}
               className={props.currentPage === p ? s.selectedPage : ""}
             >
               {p}
@@ -41,11 +42,13 @@ export const UsersFuncComponent = (props: UsersFuncComponentPropsType) => {
         <div key={u.id}>
           <span>
             <div>
-              <img
-                src={u.photos.small !== null ? u.photos.small : Nova}
-                alt="imgHero"
-                className={s.usersPhoto}
-              />
+              <NavLink to={"/profile/" + u.id}>
+                <img
+                  src={u.photos.small !== null ? u.photos.small : Nova}
+                  alt="imgHero"
+                  className={s.usersPhoto}
+                />
+              </NavLink>
             </div>
             <div>
               {u.followed ? (
