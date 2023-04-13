@@ -12,6 +12,7 @@ let mapStateToProps = (state: RootStateType) => {
     dialogsData: state.dialogsPage.dialogsData,
     newMessageBody: state.dialogsPage.newMessageBody,
     messagesData: state.dialogsPage.messagesData,
+    isAuth: state.auth.data.isAuth
   };
 };
 
