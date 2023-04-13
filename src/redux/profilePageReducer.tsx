@@ -1,4 +1,6 @@
+import { Dispatch } from "redux";
 import { MyPostsType, ProfilePageType, ProfileUserPageType } from "./state";
+import { usersAPI } from "../api/api";
 
 export type ActionsType =
   | ReturnType<typeof addPostAC>
@@ -48,7 +50,7 @@ export const profilePageReducer = (
 export const addPostAC = () => {
   return {
     type: "ADD-POST",
-    } as const;
+  } as const;
 };
 export const updateNewPostTextAC = (newText: string) => {
   return {
@@ -61,4 +63,12 @@ export const setUserProfile = (profile: ProfileUserPageType) => {
     type: "SET-USER-PROFILE",
     profile,
   } as const;
+};
+
+export const getUserProfile = (userId: string) => {
+  return (dispatch: Dispatch) => {
+    usersAPI.getProfile(userId).then((res) => {
+      dispatch(setUserProfile(res.data));
+    });
+  };
 };

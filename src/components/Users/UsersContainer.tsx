@@ -2,16 +2,16 @@ import { connect } from "react-redux";
 import { RootStateType } from "../../redux/reduxStore";
 import {
   follow,
+  followThunk,
+  getUserThunk,
   setCurrentPage,
-  setLoading,
-  setTotalUsersCount,
-  setUsers,
   unfollow,
+  unfollowThunk,
   UsersType,
 } from "../../redux/usersPageReducer";
 import React from "react";
 import { UsersFuncComponent } from "./UsersFuncComponent";
-import axios from "axios";
+import {FollowingUsers} from "../../redux/usersPageReducer";
 
 type UsersPropsType = {
   pageSize: number;
@@ -19,38 +19,27 @@ type UsersPropsType = {
   currentPage: number;
   isFetching: boolean;
   users: UsersType[];
+  followingInProgress: FollowingUsers;
   follow: (usersId: number) => void;
   unfollow: (usersId: number) => void;
-  setUsers: (users: Array<UsersType>) => void;
   setCurrentPage: (currentPage: number) => void;
-  setTotalUsersCount: (totalCount: number) => void;
-  setLoading: (loading: boolean) => void;
+  getUserThunk: (currentPage: number, pageSize: number) => void;
+  followThunk: (id: number) => void;
+  unfollowThunk: (id: number) => void;
 };
 
 export class UsersClass extends React.Component<UsersPropsType> {
   componentDidMount(): void {
-    this.props.setLoading(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
-      )
-      .then((res) => {
-        this.props.setLoading(false);
-        this.props.setUsers(res.data.items);
-        this.props.setTotalUsersCount(res.data.totalCount);
-      });
-  }
+    this.props.getUserThunk(this.props.currentPage, this.props.pageSize);
+     }
   onPageChange = (p: number) => {
-    this.props.setCurrentPage(p);
-    this.props.setLoading(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`
-      )
-      .then((res) => {
-        this.props.setLoading(false);
-        this.props.setUsers(res.data.items);
-      });
+    // this.props.setCurrentPage(p);
+    // this.props.setLoading(true);
+    // usersAPI.getUsers(p, this.props.pageSize).then((data) => {
+    //   this.props.setLoading(false);
+    //   this.props.setUsers(data.items);
+    // });
+    this.props.getUserThunk(p, this.props.pageSize);
   };
 
   render() {
@@ -64,6 +53,9 @@ export class UsersClass extends React.Component<UsersPropsType> {
         currentPage={this.props.currentPage}
         onPageChange={this.onPageChange}
         isFetching={this.props.isFetching}
+        followingInProgress={this.props.followingInProgress}
+        followThunk={this.props.followThunk}
+        unfollowThunk={this.props.unfollowThunk}
       />
     );
   }
@@ -76,37 +68,15 @@ let mapStateToProps = (state: RootStateType) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress
   };
 };
-
-// let mapDispatchToProps = (dispatch: Dispatch) => {
-//   return {
-//     follow: (usersId: number) => {
-//       dispatch(followAC(usersId));
-//     },
-//     unfollow: (usersId: number) => {
-//       dispatch(unfollowAC(usersId));
-//     },
-//     setUsers: (users: UsersType[]) => {
-//       dispatch(setUsersAC(users));
-//     },
-//     setCurrentPage: (currentPage: number) => {
-//       dispatch(setCurrentPageAC(currentPage));
-//     },
-//     setTotalUsersCount: (totalCount: number) => {
-//       dispatch(setTotalUsersCountAC(totalCount));
-//     },
-//     setLoading: (loading: boolean) => {
-//       dispatch(setLoadingAC(loading));
-//     },
-//   };
-// };
 
 export const UsersContainer = connect(mapStateToProps, {
   follow,
   unfollow,
-  setUsers,
   setCurrentPage,
-  setTotalUsersCount,
-  setLoading,
+  getUserThunk,
+  followThunk,
+  unfollowThunk
 })(UsersClass);

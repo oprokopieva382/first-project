@@ -1,8 +1,4 @@
 import { ChangeEvent } from "react";
-import {
-  sendMessageAC,
-  updateNewMessageBodyAC,
-} from "../../redux/dialogsPageReducer";
 import { DialogsDataType, MessagesDataType } from "../../redux/state";
 import { DialogsItem } from "./DialogItem/DialogsItem";
 import s from "./Dialogs.module.css";

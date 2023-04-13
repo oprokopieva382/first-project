@@ -16,7 +16,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         <div>
           <img
             src="https://static.scientificamerican.com/sciam/cache/file/5FE5FD06-AA07-43DE-9AF48B96EEDCF063_source.jpg"
-            alt=""
+            alt="photo"
             width={700}
           />
         </div>
